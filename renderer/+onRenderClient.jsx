@@ -5,19 +5,19 @@ import React from 'react'
 import { hydrateRoot, createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { getStore } from './store'
-import config from './+config.h'
 
 // this example has client-side routing enabled ( see `+config.h.js` )
 // for SSR only you can disable both `clientRouting` and `hydrationCanBeAborted`
 
 let root
+// store is initialized only once on the client, so it can persist between client-side navigations
 let store = null
 async function onRenderClient(pageContext) {
   const { Page } = pageContext
   
   // If we use Client Routing, then we should initialize the store only once
   // (See https://vike.dev/server-routing-vs-client-routing for more information about Client Routing and Server Routing.)
-  if(!config.clientRouting || !store) {
+  if(!store) {
     store = getStore(pageContext.PRELOADED_STATE)
   }
   
