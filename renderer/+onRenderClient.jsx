@@ -4,6 +4,7 @@ export default onRenderClient
 import React from 'react'
 import { hydrateRoot, createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
+import { PageLayout } from './PageLayout'
 import { getStore } from './store'
 
 // this example has client-side routing enabled ( see `+config.h.js` )
@@ -14,16 +15,18 @@ let root
 let store = null
 async function onRenderClient(pageContext) {
   const { Page } = pageContext
-  
+
   // If we use Client Routing, then we should initialize the store only once
   // (See https://vike.dev/server-routing-vs-client-routing for more information about Client Routing and Server Routing.)
-  if(!store) {
+  if (!store) {
     store = getStore(pageContext.PRELOADED_STATE)
   }
-  
+
   const page = (
     <Provider store={store}>
-      <Page />
+      <PageLayout>
+        <Page />
+      </PageLayout>
     </Provider>
   )
 

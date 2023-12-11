@@ -5,6 +5,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { getStore } from './store'
+import { PageLayout } from './PageLayout'
 
 async function onBeforeRender(pageContext) {
   const store = getStore()
@@ -12,7 +13,9 @@ async function onBeforeRender(pageContext) {
   const { Page } = pageContext
   const pageHtml = renderToString(
     <Provider store={store}>
-      <Page />
+      <PageLayout>
+        <Page />
+      </PageLayout>
     </Provider>
   )
 

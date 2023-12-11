@@ -10,14 +10,13 @@ function Page() {
 
   const increment = () => dispatch({ type: 'counter/incremented' })
   const decrement = () => dispatch({ type: 'counter/decremented' })
-  const navigateToIndexPage = () => navigate('/')
 
   return (
     <>
-      <h1>Redux-Controlled Counter</h1>
+      <h1>Another page</h1>
+      <p>Redux-Controlled Counter</p>
       Count: {count}. <button onClick={increment}>++</button> <button onClick={decrement}>--</button>
-      <h1>Redux Store persists on clienside routing</h1>
-      <button onClick={navigateToIndexPage}>Go to Index Page</button>
+      <p>Redux Store persists on client-side routing</p>
     </>
   )
 }
